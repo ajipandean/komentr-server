@@ -11,5 +11,5 @@ func Setup(e *echo.Echo) {
   v1.GET("/", func(c echo.Context) error {
     return c.String(http.StatusOK, "Hello world")
   })
-  v1.POST("/auth/users/register", c.RegisterUser)
+  v1.POST("/auth/register", c.Register)
 }

@@ -1,4 +1,4 @@
-package v1
+package controllers_v1
 
 import (
   "net/http"
@@ -7,7 +7,7 @@ import (
   s "komentr-server/services/api/v1"
 )
 
-func RegisterUser(c echo.Context) error {
+func Register(c echo.Context) error {
   user := new(models.User)
   if err := c.Bind(user); err != nil {
     panic(err)
