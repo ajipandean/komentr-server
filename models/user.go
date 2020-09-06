@@ -1,13 +1,11 @@
 package models
 
-import (
-  "gorm.io/gorm"
-)
+import "komentr-server/helpers"
 
 type User struct {
-  gorm.Model
-  Username string
-  Email string
-  Password string
-  Comments []Comment
+  helpers.Model
+  Username string `json:"username" gorm:"type:varchar(70)"`
+  Email string `json:"email" gorm:"type:varchar(100);not null;unique"`
+  Password string `json:"password" gorm:"not null;type:varchar(100)"`
+  Comments []Comment `json:"comments"`
 }
