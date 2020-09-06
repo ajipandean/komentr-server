@@ -15,6 +15,16 @@ type User struct {
   Comments []Comment `json:"comments"`
 }
 
+func (u *User) ValidatePassword(password string) error {
+  hashedPassword := []byte(u.Password)
+  currentPassword := []byte(password)
+  err := b.CompareHashAndPassword(hashedPassword, currentPassword)
+  if err != nil {
+    return err
+  }
+  return nil
+}
+
 func (u *User) BeforeSave(tx *gorm.DB) error {
   bytePassword := []byte(u.Password)
   hashedPassword, err := b.GenerateFromPassword(bytePassword, b.DefaultCost)

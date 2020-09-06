@@ -8,5 +8,6 @@ import (
 func Setup(e *echo.Echo) {
   v1 := e.Group("/api/v1")
   v1.GET("/secret", c.GetAppSecret)
+  v1.POST("/auth/login", c.Login)
   v1.POST("/auth/register", c.Register)
 }
