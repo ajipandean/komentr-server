@@ -28,6 +28,6 @@ func Setup(e *echo.Echo) {
     SigningKey: []byte(os.Getenv("APP_SECRET")),
   }
   v1s.Use(middleware.JWTWithConfig(jwtConfig))
-  v1s.GET("", c.GetUser)
-  v1s.POST("/comments", c.StoreComment)
+  v1s.GET("/user", c.GetUser)
+  v1s.POST("/user/comments", c.StoreUserComment)
 }

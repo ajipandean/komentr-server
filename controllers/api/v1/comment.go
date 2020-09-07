@@ -7,7 +7,7 @@ import (
   s "komentr-server/services/api/v1"
 )
 
-func StoreComment(c echo.Context) error {
+func StoreUserComment(c echo.Context) error {
   comment := new(models.Comment)
   if err := c.Bind(comment); err != nil {
     panic(err)
