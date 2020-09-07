@@ -1,11 +1,11 @@
 package models
 
 import (
-  "gorm.io/gorm"
+  "komentr-server/helpers"
 )
 
 type Comment struct {
-  gorm.Model
-  Message string
-  UserID uint
+  helpers.Model
+  Message string `json:"message"`
+  UserID uint `json:"user_id"`
 }

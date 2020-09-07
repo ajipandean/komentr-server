@@ -29,4 +29,5 @@ func Setup(e *echo.Echo) {
   }
   v1s.Use(middleware.JWTWithConfig(jwtConfig))
   v1s.GET("", c.GetUser)
+  v1s.POST("/comments", c.StoreComment)
 }
