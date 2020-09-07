@@ -9,6 +9,10 @@ import (
 )
 
 func Setup(e *echo.Echo) {
+  e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+    AllowOrigins: []string{"http://localhost:3000"},
+  }))
+
   v1 := e.Group("/v1")
   v1.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
     Format: "method=${method}, uri=${uri}, status=${status}\n",

@@ -2,7 +2,6 @@ package helpers
 
 import (
   "os"
-  "fmt"
   "time"
   "github.com/dgrijalva/jwt-go"
 )
