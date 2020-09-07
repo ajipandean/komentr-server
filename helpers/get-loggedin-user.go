@@ -5,8 +5,8 @@ import (
   "github.com/dgrijalva/jwt-go"
 )
 
-func GetLoggedinUser(c echo.Context) jwt.Claims {
+func GetLoggedinUser(c echo.Context) jwt.MapClaims {
   user := c.Get("user").(*jwt.Token)
-  claims := user.Claims
+  claims := user.Claims.(jwt.MapClaims)
   return claims
 }

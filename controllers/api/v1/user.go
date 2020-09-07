@@ -9,8 +9,8 @@ import (
 )
 
 func GetUser(c echo.Context) error {
-  loggedinUser := h.GetLoggedinUser(c)
-  return c.JSON(http.StatusOK, loggedinUser)
+  u := h.GetLoggedinUser(c)
+  return c.JSON(http.StatusOK, u["username"])
 }
 
 func GetUserComments(c echo.Context) error {
