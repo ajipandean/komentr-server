@@ -5,6 +5,15 @@ import (
   "komentr-server/config"
 )
 
+func FindUserWithComments(id uint, user *models.User) error {
+  db := config.DB
+  result := db.Where("id = ?", id).Preload("Comments").First(&user)
+  if result.Error != nil {
+    return result.Error
+  }
+  return nil
+}
+
 func CreateUser(user *models.User) error {
   db := config.DB
   result := db.Create(&user)

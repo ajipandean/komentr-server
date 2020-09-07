@@ -29,5 +29,6 @@ func Setup(e *echo.Echo) {
   }
   v1s.Use(middleware.JWTWithConfig(jwtConfig))
   v1s.GET("/user", c.GetUser)
-  v1s.POST("/user/comments", c.StoreUserComment)
+  v1s.GET("/user/comments", c.GetUserComments)
+  v1s.POST("/comments", c.StoreComment)
 }
