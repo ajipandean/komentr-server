@@ -2,6 +2,7 @@ package helpers
 
 import (
   "os"
+  "fmt"
   "time"
   "github.com/dgrijalva/jwt-go"
 )
@@ -19,7 +20,7 @@ func ClaimsJWTToken(username, email string, id uint) (string, error) {
     username,
     email,
     jwt.StandardClaims{
-      IssuedAt: time.Now().Unix(),
+      ExpiresAt: time.Now().Add(time.Hour * 72).Unix(),
     },
   }
   token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
