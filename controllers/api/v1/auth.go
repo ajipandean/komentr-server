@@ -26,7 +26,7 @@ func Login(c echo.Context) error {
   if err := s.VerifyUser(username, password, user); err != nil {
     panic(err)
   }
-  token, err := h.ClaimsJWTToken(user.Username, user.Email)
+  token, err := h.ClaimsJWTToken(user.Username, user.Email, user.ID)
   if err != nil {
     panic(err)
   }

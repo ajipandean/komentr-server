@@ -7,13 +7,15 @@ import (
 )
 
 type ClaimsSchema struct {
-  Username string
-  Email string
+  ID uint `json:"id"`
+  Username string `json:"username"`
+  Email string `json:"email"`
   jwt.StandardClaims
 }
 
-func ClaimsJWTToken(username, email string) (string, error) {
+func ClaimsJWTToken(username, email string, id uint) (string, error) {
   claims := &ClaimsSchema{
+    id,
     username,
     email,
     jwt.StandardClaims{
