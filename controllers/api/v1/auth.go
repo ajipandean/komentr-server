@@ -8,6 +8,11 @@ import (
   s "komentr-server/services/api/v1"
 )
 
+type loginSchema struct {
+  Username string `json:"username"`
+  Password string `json:"password"`
+}
+
 func Register(c echo.Context) error {
   user := new(models.User)
   if err := c.Bind(user); err != nil {
@@ -21,9 +26,11 @@ func Register(c echo.Context) error {
 
 func Login(c echo.Context) error {
   user := new(models.User)
-  username := c.FormValue("username")
-  password := c.FormValue("password")
-  if err := s.VerifyUser(username, password, user); err != nil {
+  schema := new(loginSchema)
+  if err := c.Bind(schema); err != nil {
+    panic(err)
+  }
+  if err := s.VerifyUser(schema.Username, schema.Password, user); err != nil {
     panic(err)
   }
   token, err := h.ClaimsJWTToken(user.Username, user.Email, user.ID)
