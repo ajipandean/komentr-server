@@ -9,7 +9,7 @@ import (
 
 func Setup(e *echo.Echo) {
   e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-    AllowOrigins: []string{"http://localhost:3000"},
+    AllowOrigins: []string{"http://localhost:8080"},
   }))
   e.Use(middleware.Recover())
   e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
