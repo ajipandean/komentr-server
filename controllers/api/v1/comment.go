@@ -8,6 +8,16 @@ import (
   s "komentr-server/services/api/v1"
 )
 
+func GetUserComments(c echo.Context) error {
+  comments := new([]models.Comment)
+  u := h.GetLoggedinUser(c)
+  id := uint(u["id"].(float64))
+  if err := s.FetchUserComments(id, comments); err != nil {
+    panic(err)
+  }
+  return c.JSON(http.StatusOK, comments)
+}
+
 func StoreComment(c echo.Context) error {
   comment := new(models.Comment)
   u := h.GetLoggedinUser(c)

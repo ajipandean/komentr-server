@@ -5,6 +5,15 @@ import (
   "komentr-server/config"
 )
 
+func FetchUserComments(id uint, comments *[]models.Comment) error {
+  db := config.DB
+  result := db.Where("user_id = ?", id).Find(&comments)
+  if result.Error != nil {
+    return result.Error
+  }
+  return nil
+}
+
 func CreateComment(comment *models.Comment) error {
   db := config.DB
   result := db.Create(&comment)
