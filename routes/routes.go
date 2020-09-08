@@ -20,10 +20,10 @@ func Setup(e *echo.Echo) {
   v1.GET("/secret", c.GetAppSecret)
   v1.POST("/auth/login", c.Login)
   v1.POST("/auth/register", c.Register)
+  v1.GET("/comments", c.GetCommentsUser)
 
   s := v1.Group("/secure")
   s.Use(middleware.JWT([]byte(os.Getenv("APP_SECRET"))))
   s.GET("/user", c.GetUser)
-  s.GET("/comments", c.GetCommentsUser)
   s.POST("/comments", c.StoreComment)
 }

@@ -10,9 +10,7 @@ import (
 
 func GetCommentsUser(c echo.Context) error {
   comments := new([]models.Comment)
-  u := h.GetLoggedinUser(c)
-  id := uint(u["id"].(float64))
-  if err := s.FetchCommentsUser(id, comments); err != nil {
+  if err := s.FetchCommentsUser(comments); err != nil {
     panic(err)
   }
   return c.JSON(http.StatusOK, comments)
