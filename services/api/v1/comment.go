@@ -7,7 +7,7 @@ import (
 
 func FetchCommentsUser(comments *[]models.Comment) error {
   db := config.DB
-  result := db.Preload("User").Find(&comments)
+  result := db.Order("created_at desc").Preload("User").Find(&comments)
   if result.Error != nil {
     return result.Error
   }
