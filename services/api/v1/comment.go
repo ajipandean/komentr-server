@@ -5,9 +5,9 @@ import (
   "komentr-server/config"
 )
 
-func FetchUserComments(id uint, comments *[]models.Comment) error {
+func FetchCommentsUser(id uint, comments *[]models.Comment) error {
   db := config.DB
-  result := db.Where("user_id = ?", id).Find(&comments)
+  result := db.Preload("User").Find(&comments)
   if result.Error != nil {
     return result.Error
   }
